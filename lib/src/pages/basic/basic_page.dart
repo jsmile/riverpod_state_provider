@@ -8,23 +8,26 @@ class BasicPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final value = ref.watch(counterProvider);
+    // // 'setState() ... called during build' error 해결을 위한
+    // // ref.listen<T>( T, ( previous, next ) { }) 을 사용
+    // ref.listen<int>(counterProvider, (previous, next) {
+    //   if (next == 3) {
+    //     showDialog(
+    //       context: context,
+    //       builder: (context) {
+    //         return AlertDialog(
+    //           title: Text('Value is $next'),
+    //         );
+    //       },
+    //     );
+    //   }
+    // });
 
-    // 'setState() ... called during build' error 해결을 위한
-    // ref.listen<T>( T, ( previous, next ) { }) 을 사용
-    ref.listen<int>(counterProvider, (previous, next) {
-      if (next == 3) {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('Value is $next'),
-            );
-          },
-        );
-      }
-    });
+    // 타 provider 를 참조하는 ageProvider 감시
+    final value = ref.watch(ageProvider);
 
+    // final value = ref.watch(counterProvider);
+    //
     // 'setState() ... called during build' error
     // if (value == 3) {
     //   showDialog(
@@ -43,7 +46,7 @@ class BasicPage extends ConsumerWidget {
       ),
       body: Center(
         child: Text(
-          '$value',
+          value,
           style: Theme.of(context).textTheme.headlineLarge,
         ),
       ),
