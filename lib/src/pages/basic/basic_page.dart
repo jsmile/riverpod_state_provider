@@ -52,6 +52,12 @@ class BasicPage extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          // ref.read( provider ) :  data 자체 구하기
+          print(
+              '### ref.read( counterProvider ) : ${ref.read(counterProvider)} ');
+          // ref.read( provider.notifier )  :  notifier 객체( StateController<T> ) 구하기
+          print(
+              '### ref.read( counterProvider.notifier ) : ${ref.read(counterProvider.notifier)} ');
           ref
               .read(counterProvider.notifier)
               .state++; // state 는 T의 getter/setter 이다.
