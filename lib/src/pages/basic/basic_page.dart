@@ -61,6 +61,10 @@ class BasicPage extends ConsumerWidget {
           ref
               .read(counterProvider.notifier)
               .state++; // state 는 T의 getter/setter 이다.
+          // StateProvider 의 state 직접 수정 가능
+          //햣 ref.read(counterProvider.notifier).state =
+          //     ref.read(counterProvider.notifier).state + 10;
+          // ref.read(counterProvider.notifier).state = 10;
         },
         child: const Icon(Icons.add),
       ),
